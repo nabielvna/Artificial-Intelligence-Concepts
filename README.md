@@ -2,8 +2,8 @@
 
 ## About this repository
 Subject: Artificial Intelligence Concepts / 3 Credit points  
-Major: Computer Science  
 Lecturer: Dini Adni Navastara, S.Kom., M.Sc.  
+Major: Computer Science  
 Institution: Institut Teknologi Sepuluh Nopember Surabaya
 
 ## Note
