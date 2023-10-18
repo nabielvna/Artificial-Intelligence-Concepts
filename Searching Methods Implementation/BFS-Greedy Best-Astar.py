@@ -1,5 +1,3 @@
-import matplotlib.pyplot as plt
-import networkx as nx
 import heapq
 
 class Node:
@@ -83,30 +81,6 @@ def a_star(graph, start, end, heuristics):
                 f = g_costs[neighbour.name] + heuristics[neighbour.name]
                 heapq.heappush(priority_queue, (f, neighbour.name))
 
-def draw_graph(graph):
-    G = nx.Graph()
-    for node_name, node in graph.nodes.items():
-        G.add_node(node_name, pos=(node.heuristic, -ord(node_name[0])))
-        for adj, cost in node.adjacent.items():
-            G.add_edge(node_name, adj.name, weight=cost)
-    pos = nx.get_node_attributes(G, 'pos')
-    nx.draw(G, pos, with_labels=True, node_size=3000, node_color='skyblue', font_size=10, font_weight='bold')
-    labels = nx.get_edge_attributes(G, 'weight')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-
-def draw_path(graph, path):
-    G = nx.Graph()
-    for node_name, node in graph.nodes.items():
-        G.add_node(node_name, pos=(node.heuristic, -ord(node_name[0])))
-        for adj, cost in node.adjacent.items():
-            G.add_edge(node_name, adj.name, weight=cost)
-    pos = nx.get_node_attributes(G, 'pos')
-    nx.draw(G, pos, with_labels=True, node_size=3000, node_color='skyblue', font_size=10, font_weight='bold')
-    labels = nx.get_edge_attributes(G, 'weight')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-    edges = [(path[i], path[i+1]) for i in range(len(path)-1)]
-    nx.draw_networkx_edges(G, pos, edgelist=edges, edge_color='r', width=2)
-
 # Graph
 graph = Graph()
 graph.add_edge('Magetan', 'Ngawi', 32)
@@ -177,23 +151,3 @@ heuristics = {
 print("1. BFS:", bfs(graph, 'Ponorogo', 'Surabaya'))
 print("2. Greedy Best-First Search:", greedy_best_first_search(graph, 'Ponorogo', 'Surabaya', heuristics))
 print("3. A*:", a_star(graph, 'Ponorogo', 'Surabaya', heuristics))
-
-bfs_path = bfs(graph, 'Ponorogo', 'Surabaya')
-greedy_path = greedy_best_first_search(graph, 'Ponorogo', 'Surabaya', heuristics)
-a_star_path = a_star(graph, 'Ponorogo', 'Surabaya', heuristics)
-
-draw_graph(graph)
-plt.title("Graph")
-plt.show()
-
-# draw_path(graph, bfs_path)
-# plt.title("BFS Path")
-# plt.show()
-
-# draw_path(graph, greedy_path)
-# plt.title("Greedy Best-First Path")
-# plt.show()
-
-# draw_path(graph, a_star_path)
-# plt.title("A* Path")
-# plt.show()
