@@ -4,7 +4,6 @@ class Node:
     def __init__(self, name):
         self.name = name
         self.adjacent = {}
-        self.heuristic = 0
 
     def add_adjacent(self, node, cost):
         self.adjacent[node] = cost
